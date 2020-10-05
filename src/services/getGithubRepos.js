@@ -1,7 +1,7 @@
-const axios = require("axios");
-const User = require('../models/pg/User');
-const config = require("../../config/axios");
-const USERS_URL = "https://api.github.com/users";
+const axios = require('axios');
+const Repository = require('../models/pg/Repository');
+const config = require('../../config/axios');
+const BASE_URL = 'https://api.github.com';
 
 exports.getGitUsers = async (req, res, next) => {
 

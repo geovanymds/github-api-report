@@ -9,7 +9,7 @@ class Tag extends Model {
 		super.init(
 			{
 
-                iss_id: {
+                issueid: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     references: {
@@ -20,14 +20,10 @@ class Tag extends Model {
 
                 iss_repo: {
                     type: DataTypes.INTEGER,
-                    primaryKey: true,
-                    references: {
-                        model: Repository,
-                        key: 'id'
-                    }
+                    primaryKey: true
                 },
 
-                tag_name: {
+                name: {
                     type: DataTypes.STRING,
                     primaryKey: true,
                     allowNull: false,
@@ -56,7 +52,7 @@ class Tag extends Model {
         this.belongsTo(models.Issue, {
             as: 'issue_tag_repo',
             foreignKey: 'iss_repo',
-            targetKey: 'repo',
+            targetKey: 'repoid',
         });
     }
 }

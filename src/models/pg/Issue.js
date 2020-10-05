@@ -12,7 +12,7 @@ class Issue extends Model {
                     primaryKey: true,
                 },
 
-                repo: {
+                repoid: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                 },
@@ -47,7 +47,7 @@ class Issue extends Model {
                     type: DataTypes.DATE,
                 },
 
-                status: {
+                state: {
                     type: DataTypes.CHAR,
                     validate: {
                         is: {
@@ -66,17 +66,17 @@ class Issue extends Model {
 
         this.belongsTo(models.Repository, {
             as: 'issues_repos',
-            foreignKey: 'repo'
+            foreignKey: 'repoid'
         });
 
         this.belongsTo(models.User, {
             as: 'user_issue',
-            foreignKey: 'owner'
+            foreignKey: 'userid'
         });
 
         this.hasMany(models.Tag, {
             as: 'issue_tag',
-            foreignKey: 'iss_id',
+            foreignKey: 'issueid',
         });
 
         this.hasMany(models.Tag, {

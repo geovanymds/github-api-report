@@ -7,7 +7,7 @@ class License extends Model {
 		super.init(
 			{
 
-                key: {
+                id: {
                     type: DataTypes.STRING,
                     primaryKey:true,
                     validate: {
@@ -32,12 +32,12 @@ class License extends Model {
 
         this.hasMany(models.Repository, {
             as: 'license_repo',
-            foreignKey: 'license'
+            foreignKey: 'licenseid'
         });
 
         this.hasMany(models.Permission, {
             as: 'license_permission',
-            foreignKey: 'license'
+            foreignKey: 'licenseid'
         });
 
     }

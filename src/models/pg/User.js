@@ -23,7 +23,7 @@ class User extends Model {
                     }
                 },
 
-                username: {
+                name: {
                     type: DataTypes.STRING,
                     allowNull: true,
                     validate: {
@@ -34,11 +34,11 @@ class User extends Model {
                     }
                 },
 
-                qnt_followers: {
+                followers: {
                     type: DataTypes.INTEGER,
                 },
 
-                user_type: {
+                type: {
                     type: DataTypes.CHAR,
                     allowNull: false,
                     validate: {
@@ -49,7 +49,7 @@ class User extends Model {
                     }
                 },
 
-                user_location: {
+                location: {
                     type: DataTypes.STRING,
                     allowNull: true,
                     validate: {
@@ -60,7 +60,7 @@ class User extends Model {
                     }
                 },
 
-                qnt_repositories: {
+                public_repos: {
                     type: DataTypes.INTEGER,
                 },
 
@@ -73,7 +73,7 @@ class User extends Model {
 
         this.hasMany(models.Issue, {
             as: 'issue_owner',
-            foreignKey: 'owner'
+            foreignKey: 'userid'
         });
 
         this.hasMany(models.Repository, {
@@ -84,7 +84,7 @@ class User extends Model {
         this.belongsToMany(models.Repository, {
             as: 'contributor_repo',
             through: 'repository_contributors',
-            foreignKey: 'user_id'
+            foreignKey: 'userid'
         });
     }
 }

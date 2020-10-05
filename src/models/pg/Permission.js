@@ -8,7 +8,7 @@ class Permission extends Model {
 		super.init(
 			{
 
-                license: {
+                licenseid: {
                     type: DataTypes.STRING,
                     primaryKey:true,
                     validate: {
@@ -19,7 +19,7 @@ class Permission extends Model {
                     }
                 },
 
-                per_name: {
+                name: {
                     type: DataTypes.STRING,
                     primaryKey:true,
                     validate: {
@@ -39,7 +39,7 @@ class Permission extends Model {
 
         this.belongsTo(models.License, {
             as: 'user_issue',
-            foreignKey: 'license'
+            foreignKey: 'licenseid'
         });
     }
 }

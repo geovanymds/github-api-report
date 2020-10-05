@@ -13,7 +13,7 @@ class Repository extends Model {
                     primaryKey: true,
                 },
 
-                repo_name: {
+                full_name: {
                     type: DataTypes.STRING,
                     allowNull: false,
                     validate: {
@@ -24,11 +24,22 @@ class Repository extends Model {
                     }
                 },
 
-                qnt_forks: {
+                language: {
+                    type: DataTypes.STRING,
+                    allowNull: false,
+                    validate: {
+                        len: {
+                            args: [1,30],
+                            msg: "A linguagem do repositório deve ter no máximo 30 caracteres."
+                        }
+                    }
+                },
+
+                forks: {
                     type: DataTypes.INTEGER,
                 },
 
-                qnt_stars: {
+                stargazers_count: {
                     type: DataTypes.INTEGER,
                 },
 
@@ -55,24 +66,20 @@ class Repository extends Model {
 
         this.belongsTo(models.License,{
             as: 'repo_license',
-            foreignKey: 'license'
+            foreignKey: 'licenseid'
         });
 
         this.belongsToMany(models.User, {
             as: 'contributed_repo',
             through: 'repository_contributors',
-            foreignKey: 'repo_id'
+            foreignKey: 'repoid'
         });
 
         this.hasMany(models.Issue, {
             as: 'repo_issue',
-            foreignKey: 'repo'
+            foreignKey: 'repoid'
         });
 
-        this.hasMany(models.Language, {
-            as: 'repo_languages',
-            foreignKey: 'repo'
-        });
     }
 }
 
