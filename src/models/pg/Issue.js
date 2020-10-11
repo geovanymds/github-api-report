@@ -73,16 +73,6 @@ class Issue extends Model {
             as: 'user_issue',
             foreignKey: 'userid'
         });
-
-        this.hasMany(models.Tag, {
-            as: 'issue_tag',
-            foreignKey: 'issueid',
-        });
-
-        this.hasMany(models.Tag, {
-            as: 'issue_repo_tag',
-            foreignKey: 'iss_repo',
-        });
     }
 }
 

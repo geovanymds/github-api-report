@@ -10,7 +10,7 @@ exports.getGitUsers = async (req, res, next) => {
     const response = [];
 
     // Get users base information
-    for (var page = 0; page < 5; page++) {
+    for (var page = 9; page <= 9; page++) {
       const { data } = await axios.get(
         `${USERS_URL}?since=${page * 135}&per_page=135`,
         config
@@ -39,7 +39,7 @@ exports.getGitUsers = async (req, res, next) => {
 
       const { data } = await axios.get(user.url, config);
       const { login, url, type } = user;
-      const id = index + 1;
+      const id = 900 + index + 1;
       const newUser = {
         id,
         login,
@@ -58,8 +58,7 @@ exports.getGitUsers = async (req, res, next) => {
     //Storing users on the database
     users = await Promise.all(users.map(async (user) => {
   
-      const {id, login, name, type, location, followers, public_repos} = user;
-      dbUser = await User.create({id, login, name, type, location, followers, public_repos});
+      dbUser = await User.create(user);
 
       return dbUser;
 

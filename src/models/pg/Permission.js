@@ -31,7 +31,7 @@ class Permission extends Model {
                 },
 
 			},
-			{ sequelize, tableName: 'permissions' }
+			{ sequelize, tableName: 'permissions', timestamps: false }
 		);
     }
 

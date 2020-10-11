@@ -13,7 +13,7 @@ class License extends Model {
                     validate: {
                         len: {
                             args: [1,30],
-                            msg: "O nome da linguagem deve ter no máximo 30 caracteres."
+                            msg: "O id da licença deve ter no máximo 30 caracteres."
                         }
                     }
                 },
@@ -24,7 +24,7 @@ class License extends Model {
                 },
 
 			},
-			{ sequelize, tableName: 'licenses' }
+			{ sequelize, tableName: 'licenses', timestamps: false }
 		);
     }
     

@@ -82,8 +82,8 @@ class User extends Model {
         });
         
         this.belongsToMany(models.Repository, {
-            as: 'contributor_repo',
-            through: 'repository_contributors',
+            as: 'subscriberRepo',
+            through: 'repository_subscriptions',
             foreignKey: 'userid'
         });
     }

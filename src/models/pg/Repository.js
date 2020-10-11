@@ -11,6 +11,7 @@ class Repository extends Model {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
+                    
                 },
 
                 full_name: {
@@ -18,15 +19,15 @@ class Repository extends Model {
                     allowNull: false,
                     validate: {
                         len: {
-                            args: [1,40],
-                            msg: "O nome do repositório deve ter no máximo 40 caracteres."
+                            args: [1,60],
+                            msg: "O nome do repositório deve ter no máximo 60 caracteres."
                         }
                     }
                 },
 
                 language: {
                     type: DataTypes.STRING,
-                    allowNull: false,
+                    allowNull: true,
                     validate: {
                         len: {
                             args: [1,30],
@@ -37,6 +38,7 @@ class Repository extends Model {
 
                 forks: {
                     type: DataTypes.INTEGER,
+                    allowNull: true,
                 },
 
                 stargazers_count: {
@@ -45,15 +47,19 @@ class Repository extends Model {
 
                 created_at: {
                     type: DataTypes.DATE,
-                    defaultValue: Sequelize.NOW
                 },
 
-                qnt_followers: {
+                owner: {
                     type: DataTypes.INTEGER,
+                },
+
+                licenseid: {
+                    type: DataTypes.STRING,
+                    allowNull: true,
                 }
 
 			},
-			{ sequelize, tableName: 'users', underscored: true }
+			{ sequelize, tableName: 'repositories', timestamps: false }
 		);
     }
     
@@ -70,9 +76,10 @@ class Repository extends Model {
         });
 
         this.belongsToMany(models.User, {
-            as: 'contributed_repo',
-            through: 'repository_contributors',
-            foreignKey: 'repoid'
+            as: 'repoSubscriptions',
+            through: 'repository_subscriptions',
+            foreignKey: 'repoid',
+            timestamps: false
         });
 
         this.hasMany(models.Issue, {
