@@ -22,8 +22,8 @@ class Issue extends Model {
                     allowNull: false,
                     validate: {
                         len: {
-                            args: [1,50],
-                            msg: "O título deve ter no máximo 50 caracteres."
+                            args: [1,100],
+                            msg: "O título deve ter no máximo 100 caracteres."
                         }
                     }
                 },
@@ -31,34 +31,13 @@ class Issue extends Model {
                 body: {
                     type: DataTypes.TEXT,
                     allowNull: false,
-                    validate: {
-                        len: {
-                            args: [1,50],
-                            msg: "O título deve ter no máximo 50 caracteres."
-                        }
-                    }
                 },
 
                 created_at: {
                     type: DataTypes.DATE,
                 },
-
-                closed_at: {
-                    type: DataTypes.DATE,
-                },
-
-                state: {
-                    type: DataTypes.CHAR,
-                    validate: {
-                        is: {
-                            args: /[oc]/,
-                            msg: "O estado do repositório deve ser informado como o (open) ou c (closed)."
-                        }
-                    }
-                },
-
 			},
-			{ sequelize, tableName: 'issues' }
+			{ sequelize, tableName: 'issues', timestamps: false }
 		);
     }
     
@@ -69,10 +48,6 @@ class Issue extends Model {
             foreignKey: 'repoid'
         });
 
-        this.belongsTo(models.User, {
-            as: 'user_issue',
-            foreignKey: 'userid'
-        });
     }
 }
 

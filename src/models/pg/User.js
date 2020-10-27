@@ -71,11 +71,6 @@ class User extends Model {
     
     static associate(models){
 
-        this.hasMany(models.Issue, {
-            as: 'issue_owner',
-            foreignKey: 'userid'
-        });
-
         this.hasMany(models.Repository, {
             as: 'repo_owner',
             foreignKey: 'owner'

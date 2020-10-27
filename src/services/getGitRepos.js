@@ -8,8 +8,8 @@ const BASE_URL = "https://api.github.com";
 
 exports.getGitRepos = async (req, res, next) => {
 
-  const begin = req.query.begin;
-  const end = req.query.end;
+  const { begin, end} = req.body;
+
   var idInit = await Repository.max('id');
   const licenses = (await License.findAll({attributes:['id']})).map((license)=>{
     return license.id;
@@ -82,7 +82,7 @@ exports.getGitRepos = async (req, res, next) => {
       return dbRepo;
 
     }));
-    console.log(repos);
+
     return res.status(200).json({ Message: repos });
 
   } catch (error) {
@@ -182,9 +182,8 @@ exports.getGitSubscriptions = async (req, res, next) => {
       return dbRepo;
 
     }));
-    console.log(response);
 
-    return res.status(200).json({ dbRepos });
+    return res.status(200).json({ Message: "Sucesso" });
 
   } catch (error) {
 
