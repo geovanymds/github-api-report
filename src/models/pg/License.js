@@ -24,7 +24,7 @@ class License extends Model {
                 },
 
 			},
-			{ sequelize, tableName: 'licenses', timestamps: false }
+			{ sequelize, tableName: 'licenses', timestamps: false, schema: 'gitdatabase' }
 		);
     }
     

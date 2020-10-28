@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { Op } = require("sequelize");
 const Repository = require("../../models/mongo/Repository");
 const Issue = require("../../models/mongo/Issue");
 const config = require("../../../config/axios");

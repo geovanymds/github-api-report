@@ -37,8 +37,8 @@ class Issue extends Model {
                     type: DataTypes.DATE,
                 },
 			},
-			{ sequelize, tableName: 'issues', timestamps: false }
-		);
+			{ sequelize, tableName: 'issues', timestamps: false, schema: "gitdatabase" }
+        );
     }
     
     static associate(models){

@@ -65,7 +65,7 @@ class User extends Model {
                 },
 
 			},
-			{ sequelize, tableName: 'users', timestamps: false}
+			{ sequelize, tableName: 'users', timestamps: false, schema: 'gitdatabase'}
 		);
     }
     

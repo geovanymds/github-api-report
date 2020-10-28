@@ -59,7 +59,7 @@ class Repository extends Model {
                 }
 
 			},
-			{ sequelize, tableName: 'repositories', timestamps: false }
+			{ sequelize, tableName: 'repositories', timestamps: false, schema: 'gitdatabase' }
 		);
     }
     

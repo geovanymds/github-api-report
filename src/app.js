@@ -32,12 +32,7 @@ class App {
 
     const {
       servicesRouter,
-      usersRouter
     } = routes;
-
-    // this.express.use("/", (req, res, next) => {
-    //   res.send("<h1>Relatório Ad-Hoc</h1>");
-    // });
 
     this.express.use('/services', servicesRouter);
 

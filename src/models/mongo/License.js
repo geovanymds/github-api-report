@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Permission = require('./Permission');
 
 const License = new mongoose.Schema({
 
