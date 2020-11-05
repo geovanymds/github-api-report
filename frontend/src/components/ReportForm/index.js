@@ -22,6 +22,7 @@ function ReportForm() {
         />
         <FormLabel htmlFor="table">Table</FormLabel>
         <FormSelect id="table">
+          <FormOption value="">Selecione</FormOption>
           <FormOption value="Users">Users</FormOption>
           <FormOption value="Repositories">Repositories</FormOption>
         </FormSelect>
