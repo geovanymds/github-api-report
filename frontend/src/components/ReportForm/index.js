@@ -1,12 +1,33 @@
-import React, { useState } from "react";
-import { FormTitle, Form, FormInput, FormLabel, FormSelect, FormOption } from "./styles";
+import React, { useState, useEffect } from "react";
+import {
+  FormTitle,
+  Form,
+  FormInput,
+  FormLabel,
+  FormSelect,
+  FormOption,
+} from "./styles";
+import RepoForm from "./RepoForm";
 
 function ReportForm() {
   const [name, setName] = useState("");
+  const [table, setTable] = useState("Users");
+  const [lang, setLang] = useState("");
+  const [langList, setLangList] = useState([]);
 
-  const handleChange = ({ target }) => {
+  const handleName = ({ target }) => {
     setName(target.value);
   };
+
+  const handleLang = ({ target }) => {
+    setLang(target.value);
+  };
+
+  const handleTable = ({ target }) => {
+    setTable(target.value);
+  };
+
+  // useEffect(()=>{console.log(table)},[table]);
 
   return (
     <>
@@ -18,14 +39,27 @@ function ReportForm() {
           placeholder="name"
           id="name"
           value={name}
-          onChange={handleChange}
+          onChange={handleName}
         />
         <FormLabel htmlFor="table">Table</FormLabel>
-        <FormSelect id="table">
-          <FormOption value="">Selecione</FormOption>
+        <FormSelect id="table" value={table} onChange={handleTable}>
           <FormOption value="Users">Users</FormOption>
           <FormOption value="Repositories">Repositories</FormOption>
         </FormSelect>
+        <RepoForm
+          lang={lang}
+          handleLang={handleLang}
+          setLang={setLang}
+          langList={langList}
+          setLangList={setLangList}
+        />
+        {/* <FormLabel htmlFor="languages">Languages</FormLabel>
+        <FormInput list="languagesOptions" value={lang} onChange={handleLang} placeholder="Select a Language" width="200px"/>
+        <DataList id="languagesOptions">
+          {globals.languages.map((language) => (
+            <FormOption key={language} value={language}>{language}</FormOption>
+          ))}
+        </DataList> */}
       </Form>
     </>
   );

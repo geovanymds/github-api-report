@@ -4,7 +4,6 @@ import colors from "../../styles/colors";
 const inputStyles = `
 padding: 10px 0px 5px 5px;
 background: ${colors.white};
-width: 400px;
 border: none;
 border-bottom: 3px solid ${colors.grey};
 &:focus {
@@ -40,22 +39,29 @@ export const FormLabel = styled.label.attrs((props) => ({
 
 export const FormInput = styled.input.attrs((props) => ({
   type: `${props.type && props.type}`,
-  placeholder: `${props.placeholder && props.placeholder.toUpperCase()}`,
+  placeholder: `${!!props.placeholder && props.placeholder.toUpperCase()}`,
   id: `${props.id}`,
   value: `${props.value && props.value}`,
   onChange: props.onChange,
   required: `${props.required && props.required}`,
   list: `${props.list && props.list}`,
 }))`
-  ${inputStyles}
+  ${inputStyles};
+  width: ${props=>!!props.width ? props.width : "400px"};
 `;
 
 export const FormSelect = styled.select.attrs((props) => ({
   id: `${props.id}`,
+  value: `${props.value && props.value}`,
+  onChange: props.onChange,
 }))`
   ${inputStyles};
 `;
 
 export const FormOption = styled.option.attrs((props) => ({
-  value: `${props.value}`,
+  value: `${props.value&&props.value}`,
+}))``;
+
+export const DataList = styled.datalist.attrs((props) => ({
+  id: `${props.id}`
 }))``;

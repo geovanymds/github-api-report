@@ -23,4 +23,8 @@ export default createGlobalStyle`
     color: ${colors.white}
   }
 
+  ol, ul {
+	  list-style: none;
+  }
+
 `;
