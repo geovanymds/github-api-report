@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import colors from "../styles/colors";
 
 export default createGlobalStyle`
 
@@ -12,14 +13,14 @@ export default createGlobalStyle`
   body{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
-    background: #04080f;
+    background: ${colors.dark_blue};
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   html, body, #root {
     height: 100%;
-    color: #FFF
+    color: ${colors.white}
   }
 
 `;
