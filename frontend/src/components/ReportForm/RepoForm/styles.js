@@ -8,26 +8,22 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
   display: flex;
   max-height: 50px;
+  max-width: 250px;
+  flex-wrap: wrap;
 `;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+`
 
 export const Languages = styled.div`
   background: ${colors.white};
   width: 150px;
-  height: 200px;
+  height: 250px;
   overflow-y: auto;
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 0px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  border-radius: 3px;
 `;
 
 export const List = styled.ul.attrs((props) => ({}))`
@@ -41,6 +37,9 @@ export const ListItem = styled.li.attrs((props) => ({
 }))`
   padding: 0.5rem;
   border-bottom: 3px solid ${colors.grey};
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 export const Button = styled.div.attrs((props) => ({

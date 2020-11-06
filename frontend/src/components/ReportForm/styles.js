@@ -10,6 +10,7 @@ border-bottom: 3px solid ${colors.grey};
   outline: none;
 }
 margin-bottom: 1rem;
+border-radius: 3px;
 `;
 
 export const FormTitle = styled.h1`
@@ -56,6 +57,7 @@ export const FormSelect = styled.select.attrs((props) => ({
   onChange: props.onChange,
 }))`
   ${inputStyles};
+  width: ${props=>!!props.width ? props.width : "400px"};
 `;
 
 export const FormOption = styled.option.attrs((props) => ({

@@ -14,6 +14,8 @@ function ReportForm() {
   const [table, setTable] = useState("Users");
   const [lang, setLang] = useState("");
   const [langList, setLangList] = useState([]);
+  const [stars, setStars] = useState(0);
+  const [forks, setForks] = useState(0);
 
   const handleName = ({ target }) => {
     setName(target.value);
@@ -42,7 +44,12 @@ function ReportForm() {
           onChange={handleName}
         />
         <FormLabel htmlFor="table">Table</FormLabel>
-        <FormSelect id="table" value={table} onChange={handleTable}>
+        <FormSelect
+          id="table"
+          value={table}
+          onChange={handleTable}
+          width="400px"
+        >
           <FormOption value="Users">Users</FormOption>
           <FormOption value="Repositories">Repositories</FormOption>
         </FormSelect>
@@ -52,6 +59,10 @@ function ReportForm() {
           setLang={setLang}
           langList={langList}
           setLangList={setLangList}
+          stars={stars}
+          setStars={setStars}
+          forks={forks}
+          setForks={setForks}
         />
         {/* <FormLabel htmlFor="languages">Languages</FormLabel>
         <FormInput list="languagesOptions" value={lang} onChange={handleLang} placeholder="Select a Language" width="200px"/>
