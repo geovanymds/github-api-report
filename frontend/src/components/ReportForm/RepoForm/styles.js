@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import colors from "../../../styles/colors";
+import { animation } from "../../../styles/animations";
 
 export const Container = styled.div`
   display: flex;
   margin-bottom: 1rem;
+  animation: ${animation} 0.5s forwards;
 `;
 
 export const SubContainer = styled.div`

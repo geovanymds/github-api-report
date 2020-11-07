@@ -1,23 +1,28 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext} from "react";
 import { GlobalContext } from "../../../GlobalStorage";
 import { Container, Attribute } from "./styles";
 
-function Attributes({ attrList, handleAttributes }) {
-
+function Attributes({ attrList, handleAttributes, table }) {
+  
   const { globals } = useContext(GlobalContext);
-
-  // useEffect(()=>{console.log(isActive)},[isActive]);
 
   return (
     <>
       <Container>
-        {globals.attrRepos.map((attribute) => (
+        {table==="Users"?globals.attrUser.map((attribute) => (
           <Attribute
             key={attribute}
             attrList={attrList}
             attr={attribute}
-            // indexKey={attribute}
-            // isActive={isActive[attribute]}
+            onClick={handleAttributes}
+          >
+            {attribute}
+          </Attribute>
+        )):globals.attrRepos.map((attribute) => (
+          <Attribute
+            key={attribute}
+            attrList={attrList}
+            attr={attribute}
             onClick={handleAttributes}
           >
             {attribute}

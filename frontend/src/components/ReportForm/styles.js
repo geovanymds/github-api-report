@@ -58,6 +58,7 @@ export const FormSelect = styled.select.attrs((props) => ({
 }))`
   ${inputStyles};
   width: ${props=>!!props.width ? props.width : "400px"};
+  max-height: 34px;
 `;
 
 export const FormOption = styled.option.attrs((props) => ({

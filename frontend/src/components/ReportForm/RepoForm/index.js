@@ -14,8 +14,19 @@ import { GlobalContext } from "../../../GlobalStorage";
 import icon from "../../../assets/icons/arrow_right.svg";
 
 function RepoForm(props) {
-
   const { globals } = useContext(GlobalContext);
+
+  const handleLang = ({ target }) => {
+    props.setLang(target.value);
+  };
+
+  const handleLic = ({ target }) => {
+    props.setLic(target.value);
+  };
+
+  const handleOwner = ({ target }) => {
+    props.setOwner(target.value);
+  };
 
   const handleList = () => {
     if (!props.langList.includes(props.lang) && props.lang.length > 0) {
@@ -37,6 +48,15 @@ function RepoForm(props) {
 
   const handleForks = ({ target }) => {
     props.setForks(target.value);
+  };
+
+
+  const handleBeginDate = ({ target }) => {
+    props.setBeginDate(target.value);
+  };
+
+  const handleEndDate = ({ target }) => {
+    props.setEndDate(target.value);
   };
 
   const handleLicList = () => {
@@ -61,7 +81,7 @@ function RepoForm(props) {
           <FormInput
             list="languagesOptions"
             value={props.lang}
-            onChange={props.handleLang}
+            onChange={handleLang}
             placeholder="Type a Language"
             width="200px"
           />
@@ -95,11 +115,21 @@ function RepoForm(props) {
           </InputContainer>
           <InputContainer>
             <FormLabel>Creation date begin</FormLabel>
-            <FormInput width="200px" type="date" value={props.beginDate} onChange={props.handleBeginDate}/>
+            <FormInput
+              width="200px"
+              type="date"
+              value={props.beginDate}
+              onChange={handleBeginDate}
+            />
           </InputContainer>
           <InputContainer>
             <FormLabel>Creation date end</FormLabel>
-            <FormInput width="200px" type="date" value={props.endDate} onChange={props.handleEndDate}/>
+            <FormInput
+              width="200px"
+              type="date"
+              value={props.endDate}
+              onChange={handleEndDate}
+            />
           </InputContainer>
         </SubContainer>
         <BoxList>
@@ -119,7 +149,7 @@ function RepoForm(props) {
           <FormInput
             list="licensesOptions"
             value={props.lic}
-            onChange={props.handleLic}
+            onChange={handleLic}
             placeholder="Type a License"
             width="200px"
           />
@@ -136,7 +166,7 @@ function RepoForm(props) {
           <FormLabel htmlFor="owner">Owner</FormLabel>
           <FormInput
             value={props.owner}
-            onChange={props.handleOwner}
+            onChange={handleOwner}
             placeholder="Owner"
             width="201px"
           />
