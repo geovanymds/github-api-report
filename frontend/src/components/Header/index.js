@@ -8,7 +8,7 @@ function Header(props) {
     <>
       <HeaderContainer>
         <Icon src={githubIcon} alt="github" height="50px" width="50px"/>
-        <Title>ad-hoc-report</Title>
+        <Title>ad-hoc Git Report</Title>
       </HeaderContainer>
     </>
   );

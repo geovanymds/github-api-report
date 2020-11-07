@@ -3,6 +3,7 @@ import colors from "../../../styles/colors";
 
 export const Container = styled.div`
   display: flex;
+  margin-bottom: 1rem;
 `;
 
 export const SubContainer = styled.div`
@@ -18,10 +19,10 @@ export const InputContainer = styled.div`
   margin-right: 30px;
 `
 
-export const Languages = styled.div`
+export const BoxList = styled.div`
   background: ${colors.white};
   width: 150px;
-  height: 250px;
+  height: ${props=>!!props.height ? props.height : "250px"};
   overflow-y: auto;
   border-radius: 3px;
 `;

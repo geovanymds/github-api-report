@@ -8,12 +8,18 @@ import api from "./services/api";
 
 function App() {
   const [languages, setLanguages] = useState([]);
+  const [licenses, setLicenses] = useState([]);
+  const [attrRepos, setAttrRepos] = useState([]);
+  const [attrUser, setAttrUser] = useState([]);
 
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const { data } = await api.get("repositories/languages");
-        setLanguages(data);
+        const { data } = await api.get("repositories/main");
+        setLanguages(data.languages);
+        setLicenses(data.licenses);
+        setAttrRepos(data.attributes.repos);
+        setAttrUser(data.attributes.user);
       } catch (error) {
         console.log(error);
         alert(error);
@@ -27,7 +33,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <Header />
-        <GlobalStorage globals={{languages}}>
+        <GlobalStorage globals={{languages,licenses,attrRepos,attrUser}}>
           <ReportForm />
         </GlobalStorage>
       </Container>

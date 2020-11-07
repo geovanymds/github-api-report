@@ -8,14 +8,23 @@ import {
   FormOption,
 } from "./styles";
 import RepoForm from "./RepoForm";
+import Attributes from "./Atributes";
+import { Attribute } from "./Atributes/styles";
 
 function ReportForm() {
   const [name, setName] = useState("");
   const [table, setTable] = useState("Users");
   const [lang, setLang] = useState("");
   const [langList, setLangList] = useState([]);
+  const [lic, setLic] = useState("");
+  const [licList, setLicList] = useState([]);
   const [stars, setStars] = useState(0);
   const [forks, setForks] = useState(0);
+  const [owner, setOwner] = useState("");
+  const [beginDate, setBeginDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [attrList, setAttrList] = useState([]);
+
 
   const handleName = ({ target }) => {
     setName(target.value);
@@ -27,6 +36,59 @@ function ReportForm() {
 
   const handleTable = ({ target }) => {
     setTable(target.value);
+  };
+
+  const handleLic = ({ target }) => {
+    setLic(target.value);
+  };
+
+  const handleOwner = ({ target }) => {
+    setOwner(target.value);
+  };
+
+  const handleBeginDate = ({ target }) => {
+    setBeginDate(target.value);
+  };
+
+  const handleEndDate = ({ target }) => {
+    setEndDate(target.value);
+  };
+
+  const handleAttributes = ({ target }) => {
+    
+    if(!attrList.includes(target.innerText)) {
+      setAttrList([...attrList, target.innerText]);
+    } else {
+      const newArray = attrList.filter((attr)=>{
+        return attr !== target.innerText;
+      })
+      setAttrList(newArray);
+    }  
+  }
+
+  // useEffect(()=>{console.log(attrList)},[attrList]);
+
+  const propsRepo = {
+    lang: lang,
+    handleLang: handleLang,
+    setLang: setLang,
+    langList: langList,
+    setLangList: setLangList,
+    stars: stars,
+    setStars: setStars,
+    forks: forks,
+    setForks: setForks,
+    lic:lic,
+    setLic:setLic,
+    licList:licList,
+    setLicList:setLicList,
+    handleLic:handleLic,
+    owner:owner,
+    handleOwner:handleOwner,
+    beginDate:beginDate,
+    endDate:endDate,
+    handleBeginDate:handleBeginDate,
+    handleEndDate:handleEndDate
   };
 
   // useEffect(()=>{console.log(table)},[table]);
@@ -54,23 +116,10 @@ function ReportForm() {
           <FormOption value="Repositories">Repositories</FormOption>
         </FormSelect>
         <RepoForm
-          lang={lang}
-          handleLang={handleLang}
-          setLang={setLang}
-          langList={langList}
-          setLangList={setLangList}
-          stars={stars}
-          setStars={setStars}
-          forks={forks}
-          setForks={setForks}
+          {...propsRepo}
         />
-        {/* <FormLabel htmlFor="languages">Languages</FormLabel>
-        <FormInput list="languagesOptions" value={lang} onChange={handleLang} placeholder="Select a Language" width="200px"/>
-        <DataList id="languagesOptions">
-          {globals.languages.map((language) => (
-            <FormOption key={language} value={language}>{language}</FormOption>
-          ))}
-        </DataList> */}
+        <FormLabel>Attributes</FormLabel>
+        <Attributes attrList={attrList} handleAttributes={handleAttributes}/>
       </Form>
     </>
   );
