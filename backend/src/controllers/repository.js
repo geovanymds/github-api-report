@@ -1,4 +1,5 @@
 const Repository = require("../models/pg/Repository");
+const reposQuery = require('../helpers/reposQuery');
 const User = require("../models/pg/User");
 const License = require("../models/pg/License");
 const { fn, col } = require("sequelize");
@@ -55,3 +56,19 @@ exports.main = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.report = async (req, res, next) => {
+
+  try {
+    const statements = reposQuery(req.query,next);
+    const repos = await Repository.findAndCountAll(statements);
+
+    return res.status(200).json({ repos: repos});
+  } catch(error) {
+    if(!error.statusCode) {
+      error.statusCode=500;
+    }
+    next(error);
+  }
+
+}

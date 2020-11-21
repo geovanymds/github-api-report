@@ -44,7 +44,6 @@ export const FormInput = styled.input.attrs((props) => ({
   id: `${props.id}`,
   value: `${props.value && props.value}`,
   onChange: props.onChange,
-  required: `${props.required && props.required}`,
   list: `${props.list && props.list}`,
 }))`
   ${inputStyles};
@@ -68,3 +67,19 @@ export const FormOption = styled.option.attrs((props) => ({
 export const DataList = styled.datalist.attrs((props) => ({
   id: `${props.id}`
 }))``;
+
+export const Submit = styled.button.attrs((props)=> ({
+  onClick: props.onClick
+}))`
+  max-width: 400px;
+  background: ${colors.grey};
+  margin-top: 1rem;
+  padding: 1rem;
+  border: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-radius: 3px;
+  &:hover {
+    cursor: pointer;
+  }
+`;

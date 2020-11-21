@@ -6,10 +6,12 @@ import {
   FormLabel,
   FormSelect,
   FormOption,
+  Submit,
 } from "./styles";
 import UserForm from "./UserForm";
 import RepoForm from "./RepoForm";
 import Attributes from "./Atributes";
+import api from '../../services/api'
 
 function ReportForm() {
   //Repo states
@@ -30,6 +32,9 @@ function ReportForm() {
   const [followers, setFollowers] = useState(0);
   const [repos, setRepos] = useState(0);
   const [type, setType] = useState("User");
+
+  //const [repoquery, repoquerysetQuery] = useState({name ,table, lang, langList, lic, licList, stars, forks, owner, beginDate, endDate, attrList});
+  //const
 
   useEffect(() => {
     setAttrList([]);
@@ -54,7 +59,39 @@ function ReportForm() {
     }
   };
 
-  // useEffect(()=>{console.log(attrList)},[attrList]);
+  const handleForm = async (event) => {
+    event.preventDefault();
+    //let query = "/users/report?attributes=[" + attrList.toString() + "]&&";
+    const params = {};
+    let response;
+    console.log(table);
+    if(table === "Users"){
+      if(attrList.length>0) params.attributes = attrList;
+      if (!!name) params.login = name;
+      if (!!followers) params.followers = followers;
+      if (!!type) params.type = type;
+      if (!!repos) params.repos = repos;
+      response = await api.get('/users/report', {
+        params: params
+      })
+    }
+    else{
+      if(attrList.length>0) params.attributes = attrList;
+      if(licList.length>0) params.licenses = licList;
+      if(langList.length>0) params.languages = langList;
+      if (!!name) params.full_name = name;
+      if (!!forks) params.forks = forks;
+      if (!!stars) params.stars = stars;
+      if (!!beginDate) params.begin = beginDate;
+      if (!!endDate) params.end = endDate;
+      if (!!owner) params.owner = endDate;
+      response = await api.get('/repositories/report', {
+        params: params
+      })
+    }
+    console.log(response);
+
+  };
 
   const propsRepo = {
     lang: lang,
@@ -90,8 +127,8 @@ function ReportForm() {
 
   return (
     <>
-      <FormTitle>Report Form</FormTitle>
       <Form>
+      <FormTitle>Report Form</FormTitle>
         <FormLabel htmlFor="name">Name</FormLabel>
         <FormInput
           type="text"
@@ -117,6 +154,7 @@ function ReportForm() {
           handleAttributes={handleAttributes}
           table={table}
         />
+        <Submit onClick={handleForm}>Make a Report</Submit>
       </Form>
     </>
   );

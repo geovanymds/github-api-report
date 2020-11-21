@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GlobalStyle from "./styles/global";
-import { Container } from "./styles.js";
+import { Container, SubContainer } from "./styles.js";
 import Header from "./components/Header";
 import ReportForm from "./components/ReportForm";
 import { GlobalStorage } from "./GlobalStorage";
@@ -31,11 +31,13 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Container>
-        <Header />
-        <GlobalStorage globals={{languages,licenses,attrRepos,attrUser}}>
-          <ReportForm />
-        </GlobalStorage>
+        <SubContainer>
+          <GlobalStorage globals={{ languages, licenses, attrRepos, attrUser }}>
+            <ReportForm />
+          </GlobalStorage>
+        </SubContainer>
       </Container>
     </>
   );

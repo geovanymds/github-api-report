@@ -33,11 +33,13 @@ class App {
 
     const {
       servicesRouter,
-      reposRouter
+      reposRouter,
+      userRouter
     } = routes;
 
     this.express.use('/services', servicesRouter);
     this.express.use('/repositories', reposRouter);
+    this.express.use('/users', userRouter);
 
     this.express.use((error, req, res, next) => {
       console.log(error);
