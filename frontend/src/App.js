@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import GlobalStyle from "./styles/global";
-import { Container, SubContainer } from "./styles.js";
+import { Container, SubContainerTable } from "./styles.js";
 import Header from "./components/Header";
 import ReportForm from "./components/ReportForm";
 import { GlobalStorage } from "./GlobalStorage";
+import Result from "./components/Result";
 import api from "./services/api";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [licenses, setLicenses] = useState([]);
   const [attrRepos, setAttrRepos] = useState([]);
   const [attrUser, setAttrUser] = useState([]);
+  const [response, setResponse] = useState([]);
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -32,13 +34,23 @@ function App() {
     <>
       <GlobalStyle />
       <Header />
-      <Container>
-        <SubContainer>
-          <GlobalStorage globals={{ languages, licenses, attrRepos, attrUser }}>
-            <ReportForm />
-          </GlobalStorage>
-        </SubContainer>
-      </Container>
+      <GlobalStorage
+        globals={{
+          languages,
+          licenses,
+          attrRepos,
+          attrUser,
+          response,
+          setResponse,
+        }}
+      >
+        <Container>
+          <ReportForm />
+          <SubContainerTable>
+          {response.length > 0 && <Result />}
+          </SubContainerTable>  
+        </Container>
+      </GlobalStorage>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   FormTitle,
   Form,
@@ -12,6 +12,7 @@ import UserForm from "./UserForm";
 import RepoForm from "./RepoForm";
 import Attributes from "./Atributes";
 import api from '../../services/api'
+import { GlobalContext } from "../../GlobalStorage";
 
 function ReportForm() {
   //Repo states
@@ -33,8 +34,7 @@ function ReportForm() {
   const [repos, setRepos] = useState(0);
   const [type, setType] = useState("User");
 
-  //const [repoquery, repoquerysetQuery] = useState({name ,table, lang, langList, lic, licList, stars, forks, owner, beginDate, endDate, attrList});
-  //const
+  const { globals } = useContext(GlobalContext);
 
   useEffect(() => {
     setAttrList([]);
@@ -61,13 +61,12 @@ function ReportForm() {
 
   const handleForm = async (event) => {
     event.preventDefault();
-    //let query = "/users/report?attributes=[" + attrList.toString() + "]&&";
     const params = {};
     let response;
     console.log(table);
     if(table === "Users"){
       if(attrList.length>0) params.attributes = attrList;
-      if (!!name) params.login = name;
+      if (!!name) params.userLogin = name;
       if (!!followers) params.followers = followers;
       if (!!type) params.type = type;
       if (!!repos) params.repos = repos;
@@ -89,6 +88,12 @@ function ReportForm() {
         params: params
       })
     }
+    if(!!response.data.repos&&response.data.repos.length>0) {
+      globals.setResponse([...response.data.repos]);
+    } else if (!!response.data.users&&response.data.users.length>0) {
+      globals.setResponse([...response.data.users]);
+    }
+    
     console.log(response);
 
   };
@@ -122,8 +127,6 @@ function ReportForm() {
     type: type,
     setType: setType
   }
-
-  // useEffect(()=>{console.log(table)},[table]);
 
   return (
     <>

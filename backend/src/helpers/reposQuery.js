@@ -41,7 +41,7 @@ module.exports = (statements,next) => {
             [Op.or]: licenses,
           },
         },
-        attributes: ['id']
+        attributes: []
       });
     }
   
@@ -99,8 +99,6 @@ module.exports = (statements,next) => {
         attributes: ['login']
       });
     }
-
-    console.log(query);
 
     return query;
 

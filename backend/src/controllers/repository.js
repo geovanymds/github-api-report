@@ -61,7 +61,8 @@ exports.report = async (req, res, next) => {
 
   try {
     const statements = reposQuery(req.query,next);
-    const repos = await Repository.findAndCountAll(statements);
+    const repos = await Repository.findAll(statements);
+    
 
     return res.status(200).json({ repos: repos});
   } catch(error) {

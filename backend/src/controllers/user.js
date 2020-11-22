@@ -7,7 +7,7 @@ exports.report = async (req, res, next) => {
 
   try {
     const statements = userQuery(req.query,next);
-    const users = await User.findAndCountAll(statements);
+    const users = await User.findAll(statements);
 
     return res.status(200).json({ users: users});
   } catch(error) {

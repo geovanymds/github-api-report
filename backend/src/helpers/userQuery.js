@@ -7,14 +7,20 @@ module.exports = (statements,next) => {
   const query = {};
   query.where = {};
   query.include = [];
+  query.limit = 150;
 
   const {
-    login,
+    userLogin,
     followers,
     type,
     repos,
-    attributes
+    attributes,
+    offset
   } = statements;
+
+  console.log(userLogin);
+
+  query.offset = !!offset ? offset:0;
 
   try {
 
@@ -24,9 +30,9 @@ module.exports = (statements,next) => {
       query.attributes = selected;
     }
   
-    if (!!login) {
+    if (!!userLogin) {
       query.where.login = {
-        [Op.like]: `%${login}%`,
+        [Op.like]: `%${userLogin}%`,
       };
     } 
   
