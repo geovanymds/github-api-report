@@ -22,7 +22,7 @@ module.exports = (statements,next) => {
     offset
   } = statements;
 
-  query.offset = !!offset ? offset:0;
+  query.offset = !!offset ? offset*query.limit:0;
 
   try {
 

@@ -13,6 +13,9 @@ function App() {
   const [attrRepos, setAttrRepos] = useState([]);
   const [attrUser, setAttrUser] = useState([]);
   const [response, setResponse] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalRepos, setTotalRepos] = useState(0);
+  const [params, setParams] = useState({});
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -22,6 +25,8 @@ function App() {
         setLicenses(data.licenses);
         setAttrRepos(data.attributes.repos);
         setAttrUser(data.attributes.user);
+        setTotalUsers(data.totalUsers);
+        setTotalRepos(data.totalRepos);
       } catch (error) {
         console.log(error);
         alert(error);
@@ -42,6 +47,10 @@ function App() {
           attrUser,
           response,
           setResponse,
+          params,
+          setParams,
+          totalUsers,
+          totalRepos
         }}
       >
         <Container>

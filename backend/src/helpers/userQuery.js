@@ -18,9 +18,7 @@ module.exports = (statements,next) => {
     offset
   } = statements;
 
-  console.log(userLogin);
-
-  query.offset = !!offset ? offset:0;
+  query.offset = !!offset ? offset*query.limit:0;
 
   try {
 
@@ -60,7 +58,7 @@ module.exports = (statements,next) => {
         model: sequelize.models.Repository,
       });
     }
-
+    console.log(query);
     return query;
 
   } catch (error) {

@@ -43,11 +43,18 @@ exports.main = async (req, res, next) => {
       .filter((attribute) => {
         return attribute !== "id";
       });
+    
+    const totalUsers = await User.count(); 
+    const totalRepos = await Repository.count(); 
+
+    console.log(totalUsers,totalRepos);
 
     return res.status(200).json({
       languages: languages,
       licenses: licenses,
       attributes: attributes,
+      totalUsers: totalUsers/150,
+      totalRepos: totalRepos/150
     });
   } catch (error) {
     if (!error.statusCode) {

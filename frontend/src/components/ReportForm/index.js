@@ -63,8 +63,10 @@ function ReportForm() {
     event.preventDefault();
     const params = {};
     let response;
+    params.offset = 0;
     console.log(table);
     if(table === "Users"){
+      params.tablename = "Users";
       if(attrList.length>0) params.attributes = attrList;
       if (!!name) params.userLogin = name;
       if (!!followers) params.followers = followers;
@@ -73,8 +75,10 @@ function ReportForm() {
       response = await api.get('/users/report', {
         params: params
       })
+      globals.setParams(params);
     }
     else{
+      params.tablename = "Repo";
       if(attrList.length>0) params.attributes = attrList;
       if(licList.length>0) params.licenses = licList;
       if(langList.length>0) params.languages = langList;
@@ -87,6 +91,7 @@ function ReportForm() {
       response = await api.get('/repositories/report', {
         params: params
       })
+      globals.setParams(params);
     }
     if(!!response.data.repos&&response.data.repos.length>0) {
       globals.setResponse([...response.data.repos]);
