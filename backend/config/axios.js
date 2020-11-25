@@ -1,6 +1,6 @@
 const config = {
   headers: {
-    Authorization: process.env.TOKEN_THIAGO,
+    Authorization: process.env.TOKEN,
   },
 };
 
