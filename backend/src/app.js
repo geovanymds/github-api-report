@@ -1,8 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const sequelize = require('./models/pg/index');
-
 const routes = require('./routes/index');
+const headers = require('./middlewares/headers');
 
 class App {
 
@@ -17,6 +17,7 @@ class App {
 
   middlewares() {
     this.express.use(express.json());
+    this.express.use(headers);
   }
 
   async pgConnect() {
@@ -32,9 +33,13 @@ class App {
 
     const {
       servicesRouter,
+      reposRouter,
+      userRouter
     } = routes;
 
     this.express.use('/services', servicesRouter);
+    this.express.use('/repositories', reposRouter);
+    this.express.use('/users', userRouter);
 
     this.express.use((error, req, res, next) => {
       console.log(error);
