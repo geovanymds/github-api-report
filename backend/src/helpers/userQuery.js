@@ -47,7 +47,7 @@ module.exports = (statements,next) => {
     }
 
     if (!!repos) {
-      query.where.repos = {
+      query.where.public_repos = {
         [Op.gte]: repos,
       };
     }
